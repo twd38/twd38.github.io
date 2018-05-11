@@ -18,7 +18,12 @@ function getObjects(obj, key, val) {
     return objects;
 }
 
-
+var json = '[{
+  "Official Name": "Edmund Moy",
+  "Twitter Handle": "EdmundCMoy",
+  "": "",
+  "Tweets": "Berkeley Student Mob Shuts Down Pro-Trump Demonstration. Free speech applies to all, not only to liberals. https://t.co/FHB8U2MjmM"
+}]';
 
 // var json = (function() {
 //         var json = null;
