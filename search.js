@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('topicSearch').addEventListener('keypress', function(evt) {
     // split value to keywords, search for every keyword
     const keyword = this.value.toLowerCase();
-    if (keyword.length < 3) {
+    if (keyword.length < 2) {
       return $('#results').html(`<h4 class="text-center text-danger">Please narrow your search</h4>`)
     }
     $('#results').html(`<div class="loader mx-auto"></div>`)
