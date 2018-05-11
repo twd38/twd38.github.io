@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Search</h1>
+  <ul class="list-group">
+  {% for item in search %}
+    <!-- {{item.query}} -->
+    <li class="list-group-item"><a href="search/{{item.query}}">{{item.query}}</a></li>
+  {% endfor %}
+  </ul>
+{% endblock %}
