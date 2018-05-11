@@ -41,4 +41,4 @@ function getObjects(obj, key, val) {
 
 var js = JSON.parse(json);
 
-console.log(getObjects(json,'Official Name','Edmund Moy'));
+console.log(getObjects(js,'Official Name','Edmund Moy'));
