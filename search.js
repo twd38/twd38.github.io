@@ -21,6 +21,5 @@ function getObjects(obj, key, val) {
 console.log(getObjects(js,'Official Name','Edmund Moy'));
 
 
-var json = '{"glossary":{"title":"example glossary","GlossDiv":{"title":"S","GlossList":{"GlossEntry":{"ID":"SGML","SortAs":"SGML","GlossTerm":"Standard Generalized Markup Language","Acronym":"SGML","Abbrev":"ISO 8879:1986","GlossDef":{"para":"A meta-markup language, used to create markup languages such as DocBook.","ID":"44","str":"SGML","GlossSeeAlso":["GML","XML"]},"GlossSee":"markup"}}}}}';
-
+var json = require('tweets.json')
 var js = JSON.parse(json);
