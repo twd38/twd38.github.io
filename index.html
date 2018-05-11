@@ -5,6 +5,7 @@
     <title>TrumpTweeter</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
+
   </head>
   <body>
 
@@ -116,15 +117,15 @@
             <div class="col s12 m4 l8 text-center">
               <div id="searchBar" class="input-group mb-3">
                 <input id="topicSearch" type="text" class="form-control" placeholder="Search for a topic" aria-label="Username" aria-describedby="basic-addon1">
-                <input type="button" class="btn btn-primary" value="Search" onclick= "location.href='https://script.google.com/a/cornell.edu/macros/s/AKfycbxAEbyDg82-hAsA1bqe7hA-7SwDqMjXH84Oa9bW-Hw/dev?='+document.getElementById('topicSearch').value;" />
-                <input type="button" class="btn btn-success" value="View full CSV" onclick=window.open('https://docs.google.com/spreadsheets/d/1R8rvzhlCYLi04ZoYw3uOFyWd_hcpwdsOFRQSyVRT0WQ/edit?usp=sharing') />
+                <!-- <input type="button" class="btn btn-primary" value="Search" onclick= "location.href=document.getElementById('topicSearch').value;" /> -->
 
               </div>
             </div>
 
             <div class="col s12 m4 l2"><p></p></div>
           </div>
-
+          
+          <div id="results"></div>
           <div class="row"><p></p></div>
           <div class="row"><p></p></div>
 
@@ -134,7 +135,10 @@
 
       </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="search.js"></script>
+    <script type="text/javascript" src="tweets.json"></script>
+
 
   </body>
 </html>

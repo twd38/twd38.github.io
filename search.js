@@ -1,3 +1,8 @@
+// import * as JsSearch from 'js-search';
+
+// var search = new JsSearch.Search('Official Name');
+var tweets = []
+
 function getObjects(obj, key, val) {
     var objects = [];
     for (var i in obj) {
@@ -18,27 +23,46 @@ function getObjects(obj, key, val) {
     return objects;
 }
 
- var json = '[{
-   "Official Name": "Edmund Moy",
-   "Twitter Handle": "EdmundCMoy",
-   "": "",
-   "Tweets": "Berkeley Student Mob Shuts Down Pro-Trump Demonstration. Free speech applies to all, not only to liberals. https://t.co/FHB8U2MjmM"
- }]';
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('topicSearch').addEventListener('keypress', function(evt) {
+    // split value to keywords, search for every keyword
+    const keyword = this.value.toLowerCase();
+    const filtered_tweets = tweets.filter(tweet => {
+      return tweet.Tweets.toLowerCase().indexOf(keyword)!= -1;
+    })
+    updateResults(filtered_tweets);
+  });
+});
 
-// var json = (function() {
-//         var json = null;
-//         $.ajax({
-//             'async': false,
-//             'global': false,
-//             'url': "/tweets.json",
-//             'dataType': "json",
-//             'success': function (data) {
-//                 json = data;
-//             }
-//         });
-//         return json;
-//     })();
+const updateResults = (filteredTweets) => {
+  // create element for every tweet
+  $('#results').html("")
+  filteredTweets.forEach(tweet => {
+    // $('#results').append(`<div>${tweet.Tweets}</div>`)
+    $('#results').append(`<ul class="list-group">
+      <li class="list-group-item">${tweet["Official Name"] + " : " + tweet.Tweets}</li>
+    </ul>`)
 
-var js = JSON.parse(json);
+  })
+  console.log(filteredTweets.length)
+}
 
-console.log(getObjects(js,'Official Name','Edmund Moy'));
+
+
+$.getJSON("https://api.myjson.com/bins/17gwhy", function(json) {
+
+ tweets = json;
+ // console.log(tweets);
+   //  console.log(json); // this will show the info it in firebug console
+   //
+
+
+
+
+
+
+     // console.log(getObjects(tweets,'tweets','Edmund Moy'));
+});
+
+// var json = require('/tweets.json');
+//var js = JSON.parse(json);
