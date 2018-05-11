@@ -18,7 +18,7 @@ function getObjects(obj, key, val) {
     return objects;
 }
 
- var json = [{
+ var json = {
    "Official Name": "Edmund Moy",
    "Twitter Handle": "EdmundCMoy",
    "": "",
@@ -35,7 +35,7 @@ function getObjects(obj, key, val) {
    "Twitter Handle": "EdmundCMoy",
    "": "",
    "Tweets": "Yet no outage among liberal artists, academia, or historians. https://t.co/HI1rdk3dzT"
- }];
+ };
 
 // var json = (function() {
 //         var json = null;
@@ -53,4 +53,4 @@ function getObjects(obj, key, val) {
 
 var js = JSON.parse(json);
 
-console.log(getObjects(js,'Official Name','Edmund Moy'));
+console.log(getObjects(json,'Official Name','Edmund Moy'));
