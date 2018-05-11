@@ -18,9 +18,6 @@ function getObjects(obj, key, val) {
     return objects;
 }
 
-console.log(getObjects(js,'Official Name','Edmund Moy'));
-
-
 // var json = require('tweets.json')
 
 var json = (function() {
@@ -38,3 +35,5 @@ var json = (function() {
     })();
 
 var js = JSON.parse(json);
+
+console.log(getObjects(js,'Official Name','Edmund Moy'));
