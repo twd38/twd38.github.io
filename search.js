@@ -18,21 +18,21 @@ function getObjects(obj, key, val) {
     return objects;
 }
 
-// var json = require('tweets.json')
+ var json = require('tweets.json')
 
-var json = (function() {
-        var json = null;
-        $.ajax({
-            'async': false,
-            'global': false,
-            'url': "/tweets.json",
-            'dataType': "json",
-            'success': function (data) {
-                json = data;
-            }
-        });
-        return json;
-    })();
+// var json = (function() {
+//         var json = null;
+//         $.ajax({
+//             'async': false,
+//             'global': false,
+//             'url': "/tweets.json",
+//             'dataType': "json",
+//             'success': function (data) {
+//                 json = data;
+//             }
+//         });
+//         return json;
+//     })();
 
 var js = JSON.parse(json);
 
