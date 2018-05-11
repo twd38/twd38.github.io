@@ -21,5 +21,20 @@ function getObjects(obj, key, val) {
 console.log(getObjects(js,'Official Name','Edmund Moy'));
 
 
-var json = require('tweets.json')
+// var json = require('tweets.json')
+
+var json = (function() {
+        var json = null;
+        $.ajax({
+            'async': false,
+            'global': false,
+            'url': "/tweets.json",
+            'dataType': "json",
+            'success': function (data) {
+                json = data;
+            }
+        });
+        return json;
+    })();
+
 var js = JSON.parse(json);
