@@ -18,24 +18,12 @@ function getObjects(obj, key, val) {
     return objects;
 }
 
- var json = {
+ var json = '[{
    "Official Name": "Edmund Moy",
    "Twitter Handle": "EdmundCMoy",
    "": "",
-   "Tweets": "Kid Rock's Pro-Trump T-Shirts Are Ticking Everybody Off. Seems like rebelling is only for liberal artists. https://t.co/H5MOE8NyZY"
- },
- {
-   "Official Name": "Edmund Moy",
-   "Twitter Handle": "EdmundCMoy",
-   "": "",
-   "Tweets": "Refusing To Serve People You Don't Agree With Is Suddenly Not Bigotry. A liberal double standard. https://t.co/JTqatPq5M3"
- },
- {
-   "Official Name": "Edmund Moy",
-   "Twitter Handle": "EdmundCMoy",
-   "": "",
-   "Tweets": "Yet no outage among liberal artists, academia, or historians. https://t.co/HI1rdk3dzT"
- };
+   "Tweets": "Berkeley Student Mob Shuts Down Pro-Trump Demonstration. Free speech applies to all, not only to liberals. https://t.co/FHB8U2MjmM"
+ }]';
 
 // var json = (function() {
 //         var json = null;
