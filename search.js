@@ -1,7 +1,11 @@
 // import * as JsSearch from 'js-search';
 
-// var search = new JsSearch.Search('Official Name');
-var tweets = []
+// var search = new JsSearch.Search('Name');
+var Name
+var Twitter_Handle
+var none
+var Tweet
+
 var filteredTweetsSave = []
 var filteredTweetsName = []
 var filterMethod = ""
@@ -64,89 +68,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const applyFilterOnTweets = debounce(500, (keyword) => {
   const filtered_tweets = tweets.filter(tweet => {
-    return tweet.Tweets.toLowerCase().indexOf(keyword)!= -1;
+    return tweet.Tweet.toLowerCase().indexOf(keyword)!= -1;
   })
   updateResults(filtered_tweets);
 })
 
 const updateResults = (filteredTweets) => {
+
   // create element for every tweet
   $('#results_ul').html("")
   filteredTweetsSave = filteredTweets
-  filteredTweets.forEach(tweet => {
-    // $('#results').append(`<div>${tweet.Tweets}</div>`)
+  filteredTweetsSave.forEach(tweet => {
+
+
 
     if(filterMethod == ""){
       $('#results_ul').append(`
         <li class="list-group-item mx-auto" style="width: 1000px;">
 
+            <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
+            <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
+            <p class="d-inline font-weight-light text-success float-right"> ${tweet["Date"]}</p>
 
-            <p class=" d-inline font-weight-bold">${tweet["Official Name"]}</p>
-            <p class="d-inline font-weight-light text-primary"> @${tweet["Twitter Handle"]}</p>
+          <p >${tweet.Tweet}</p>
 
-          <p>${tweet.Tweets}</p>
+          <div class="btn-group">
+              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary">
+                  <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
+              </a>
+          </div>
+
+
         </li>
       `)
     }
+      // <a href="${tweet["tweet_URL"]}"> Original Tweet </a>
 
     if(filterMethod == "none"){
+
+      function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+      }
+      shuffleArray(filteredTweetsSave)
+
       $('#results_ul').append(`
         <li class="list-group-item mx-auto" style="width: 1000px;">
 
+            <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
+            <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
+            <p class="d-inline font-weight-light text-success float-right"> ${tweet["Date"]}</p>
 
-            <p class=" d-inline font-weight-bold">${tweet["Official Name"]}</p>
-            <p class="d-inline font-weight-light text-primary"> @${tweet["Twitter Handle"]}</p>
+          <p >${tweet.Tweet}</p>
+          <div class="btn-group">
+              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+                  <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
+              </a>
+          </div>
 
-          <p>${tweet.Tweets}</p>
+
         </li>
       `)
     }
 
 
     if(filterMethod == "Name"){
-      // filteredTweetsSave.sort((tweet_a, tweet_b) => tweet_a["Official Name"] < tweet_b["Official Name"])
+      // filteredTweetsSave.sort((tweet_a, tweet_b) => tweet_a["Name"] < tweet_b["Name"])
 
       filteredTweetsSave.sort(function(tweet_a, tweet_b){
-      if(tweet_a["Official Name"].toLowerCase() < tweet_b["Official Name"].toLowerCase()) return -1;
-      if(tweet_a["Official Name"].toLowerCase() > tweet_b["Official Name"].toLowerCase()) return 1;
+      if(tweet_a["Name"].toLowerCase() < tweet_b["Name"].toLowerCase()) return -1;
+      if(tweet_a["Name"].toLowerCase() > tweet_b["Name"].toLowerCase()) return 1;
       return 0;
       })
+
 
       $('#results_ul').append(`
         <li class="list-group-item mx-auto" style="width: 1000px;">
 
+            <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
+            <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
+            <p class="d-inline font-weight-light text-success float-right"> ${tweet["Date"]}</p>
 
-            <p class=" d-inline font-weight-bold">${tweet["Official Name"]}</p>
-            <p class="d-inline font-weight-light text-primary"> @${tweet["Twitter Handle"]}</p>
+          <p >${tweet.Tweet}</p>
+          <div class="btn-group">
+              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+                  <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
+              </a>
+          </div>
 
-          <p>${tweet.Tweets}</p>
+
         </li>
       `)
     }
 
-    // //DATE FILTER
-    // if(filterMethod == "Date"){
-    //   // filteredTweetsSave.sort((tweet_a, tweet_b) => tweet_a["Official Name"] < tweet_b["Official Name"])
-    //
-    //   filteredTweetsSave.sort(function(tweet_a, tweet_b){
-    //   if(tweet_a["Date"] < tweet_b["Date"] return -1;
-    //   if(tweet_a["Date"] > tweet_b["Date"] return 1;
-    //   return 0;
-    //   })
-    //
-    //   $('#results_ul').append(`
-    //     <li class="list-group-item mx-auto" style="width: 1000px;">
-    //
-    //
-    //         <p class=" d-inline font-weight-bold">${tweet["Official Name"]}</p>
-    //         <p class="d-inline font-weight-light text-primary"> @${tweet["Twitter Handle"]}</p>
-    //
-    //       <p>${tweet.Tweets}</p>
-    //     </li>
-    //   `)
-    // }
-    //
-    // //AGENCY FILTER
+    //DATE FILTER
+    if(filterMethod == "Date"){
+      // filteredTweetsSave.sort((tweet_a, tweet_b) => tweet_a["Name"] < tweet_b["Name"])
+
+      filteredTweetsSave.sort(function(tweet_a, tweet_b){
+      // if ($.datepicker.parseDate('dd/mm/yy', tweet_b["Date"]) > $.datepicker.parseDate('dd/mm/yy', tweet_a["Date"])) return -1;
+      // if ($.datepicker.parseDate('dd/mm/yy', tweet_a["Date"]) > $.datepicker.parseDate('dd/mm/yy', tweet_b["Date"])) return 1;
+      if(tweet_a["Date"] > tweet_b["Date"]) return -1;
+      if(tweet_a["Date"] < tweet_b["Date"]) return 1;
+      return 0;
+      })
+
+
+      $('#results_ul').append(`
+        <li class="list-group-item mx-auto" style="width: 1000px;">
+
+            <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
+            <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
+            <p class="d-inline font-weight-light text-success float-right"> ${tweet["Date"]}</p>
+
+          <p >${tweet.Tweet}</p>
+
+          <div class="btn-group">
+              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+                  <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
+              </a>
+          </div>
+
+
+        </li>
+      `)
+    }
+
+    //AGENCY FILTER
     // if(filterMethod == "Agency"){
     //   filteredTweetsSave.sort(function(tweet_a, tweet_b){
     //   if(tweet_a["Agency"].toLowerCase() < tweet_b["Agency"].toLowerCase()) return -1;
@@ -157,15 +209,20 @@ const updateResults = (filteredTweets) => {
     //   $('#results_ul').append(`
     //     <li class="list-group-item mx-auto" style="width: 1000px;">
     //
+    //         <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
+    //         <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
     //
-    //         <p class=" d-inline font-weight-bold">${tweet["Official Name"]}</p>
-    //         <p class="d-inline font-weight-light text-primary"> @${tweet["Twitter Handle"]}</p>
+    //       <p >${tweet.Tweet}</p>
+    //       <div class="btn-group">
+    //           <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+    //               <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
+    //           </a>
+    //       </div>
     //
-    //       <p>${tweet.Tweets}</p>
+    //
     //     </li>
     //   `)
     // }
-
 
 
 
@@ -175,24 +232,17 @@ const updateResults = (filteredTweets) => {
     console.log(filteredTweetsSave)
 
 
-}
 
-
-function dynamicSort(property) {
-    var sortOrder = 1;
-    if(property[0] === "-") {
-        sortOrder = -1;
-        property = property.substr(1);
-    }
-    return function (a,b) {
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-        return result * sortOrder;
-    }
 }
 
 
 
-$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets.json", function(json) {
 
- tweets = json;
+
+$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets3", function(json) {
+tweets=json
+
+console.log(tweets)
+
+
 });
