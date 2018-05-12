@@ -239,9 +239,9 @@ const updateResults = (filteredTweets) => {
 
 
 
-$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets3", function(json) {
-tweets=json
+$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets.json", function(json) {
 
+tweets=json
 console.log(tweets)
 
 
