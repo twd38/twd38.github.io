@@ -97,9 +97,9 @@ const updateResults = (filteredTweets) => {
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
-
-
+          <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
         </li>
+
       `)
     }
       // <a href="${tweet["tweet_URL"]}"> Original Tweet </a>
