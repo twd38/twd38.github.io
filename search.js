@@ -5,6 +5,7 @@ var Name
 var Twitter_Handle
 var none
 var Tweet
+var tweets
 
 var filteredTweetsSave = []
 var filteredTweetsName = []
@@ -237,12 +238,21 @@ const updateResults = (filteredTweets) => {
 
 
 
+// $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets2.json", function(tweets) {
+//     console.log('json grabbed');
+//   })
+//   .done(function(tweets) {
+//     console.log(tweets);
+//   })
+//   .fail(function(tweets) {
+//     console.log("Error!");
+//   });
 
 
-$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets.json", function(json) {
-
-tweets=json
-console.log(tweets)
 
 
-});
+  $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets2.json", function(json) {
+
+  tweets=json
+  console.log(tweets)
+  });

@@ -5,10 +5,13 @@ var OfficialName
 var TwitterHandle
 var none
 var tweet
-
+var tweets
+var Tweets_array = []
+var Small_Tweets_array = []
 var filteredTweetsSave = []
 var filteredTweetsName = []
 var filterMethod = ""
+var j
 
 const debounce = (duration, fn) => {
   const state = { lastCall : Date.now() }
@@ -196,27 +199,90 @@ const updateResults = (filteredTweets) => {
 
 
 
-$.getJSON("https://mysterious-eyrie-92204.herokuapp.com/tweets_database-71af72e.json?sql=select+*+from+%5BOfficials%2C+Handles+and+Tweets+-+SheetOG%5D", function(json) {
-Tweets_array = []
 
-  for (var i=0; i<json['rows'].length; i++) {
+  function getFile(){
+    $.getJSON("http://fast-falls-98249.herokuapp.com/tweets_database-71af72e/Officials%2C+Handles+and+Tweets+-+SheetOG.json?_next="+i*100, function(j1) {
+      small_Tweets_array = []
 
-      var Tweets={OfficialName: "",
-          TwitterHandle: "",
-          none: "",
-          Tweets: ""};
-      Tweets.OfficialName = json['rows'][i][0];
-      Tweets.TwitterHandle = json['rows'][i][1];
-      Tweets.none = json['rows'][i][2];
-      Tweets.Tweets= json['rows'][i][3];
-      Tweets_array.push(Tweets)
+    // json= $.getJSON("http://fast-falls-98249.herokuapp.com/tweets_database-71af72e/Officials%2C+Handles+and+Tweets+-+SheetOG.json?_next="+i*100)
+    // j1 = (function(j){}())
+      // console.log(j1);
+        for (var i=0; i<j1['rows'].length; i++) {
 
-  }
-  console.log(Tweets_array);
+            var Tweets={OfficialName: "",
+                TwitterHandle: "",
+                none: "",
+                Tweets: ""};
+            Tweets.OfficialName = j1['rows'][i][0];
+            Tweets.TwitterHandle = j1['rows'][i][1];
+            Tweets.none = j1['rows'][i][2];
+            Tweets.Tweets= j1['rows'][i][3];
+            Small_Tweets_array.push(Tweets) // append them all into one JSON
 
-  tweets = Tweets_array;
+        }
 
-});
+        // callback(Small_Tweets_array)
+
+        });
+        return Small_Tweets_array
+
+        console.log(Small_Tweets_array);
+      }
+
+      k = 12000/100
+      for(var i = 0;i<k;i++){
+        getFile()
+        // console.log(Small_Tweets_array);
+      }
+
+
+  //convert to the format we need: simplify JSON to a list of hashables i.e. dictionary
+    // Tweets_array=Small_Tweets_array
+
+
+// $.getJSON("http://fast-falls-98249.herokuapp.com/tweets_database-71af72e/Officials%2C+Handles+and+Tweets+-+SheetOG.json?_next="+200, function(json) {
+// Tweets_array = []
+//   for (var i=0; i<json['rows'].length; i++) {
+//
+//       var Tweets={OfficialName: "",
+//           TwitterHandle: "",
+//           none: "",
+//           Tweets: ""};
+//       Tweets.OfficialName = json['rows'][i][0];
+//       Tweets.TwitterHandle = json['rows'][i][1];
+//       Tweets.none = json['rows'][i][2];
+//       Tweets.Tweets= json['rows'][i][3];
+//       Tweets_array.push(Tweets)
+//
+//   }
+//   console.log(Tweets_array);
+//
+//   tweets = Tweets_array;
+//
+// });
+
+
+// $.getJSON("http://fast-falls-98249.herokuapp.com/tweets_database-71af72e/Officials%2C+Handles+and+Tweets+-+SheetOG.json?_next="+200, function(json) {
+// Tweets_array = []
+//
+//   for (var i=0; i<json['rows'].length; i++) {
+//
+//       var Tweets={OfficialName: "",
+//           TwitterHandle: "",
+//           none: "",
+//           Tweets: ""};
+//       Tweets.OfficialName = json['rows'][i][0];
+//       Tweets.TwitterHandle = json['rows'][i][1];
+//       Tweets.none = json['rows'][i][2];
+//       Tweets.Tweets= json['rows'][i][3];
+//       Tweets_array.push(Tweets)
+//
+//   }
+//   console.log(Tweets_array);
+//
+//   tweets = Tweets_array;
+//
+// });
 
 $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets.json", function(json2) {
 
