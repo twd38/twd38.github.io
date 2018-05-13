@@ -235,10 +235,14 @@ const updateResults = (filteredTweets) => {
 
 
 }
+$.ajaxSetup({
+    timeout: 20000 //Time in milliseconds
+});
 
-$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_51K.json", function(tweets) {
+
+$.getJSON("https://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100K_v3.json", function(tweets) {
     console.log('json grabbed');
-    tweets=json;
+    // tweets=json;
   })
   .done(function(tweets) {
     console.log(tweets);
