@@ -236,7 +236,7 @@ const updateResults = (filteredTweets) => {
 
 }
 
-$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100k.json", function(tweets) {
+$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_51K.json", function(tweets) {
     console.log('json grabbed');
     tweets=json;
   })
@@ -251,8 +251,8 @@ $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_
 
 
   //
-  // $.getJSON("https://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100k.json", function(json) {
+  // $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_51K.json", function(json) {
   //
   // tweets=json
-  // // console.log(tweets)
+  //  console.log(tweets)
   // });
