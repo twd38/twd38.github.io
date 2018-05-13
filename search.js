@@ -230,7 +230,6 @@ const updateResults = (filteredTweets) => {
 
 
     })
-    console.log(filteredTweetsSave)
 
 
 
@@ -254,5 +253,4 @@ const updateResults = (filteredTweets) => {
   $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets2.json", function(json) {
 
   tweets=json
-  console.log(tweets)
   });
