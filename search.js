@@ -105,7 +105,7 @@ const updateResults = (filteredTweets) => {
           <p >${tweet.Tweet}</p>
 
           <div class="btn-group">
-              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary">
+              <a href=${tweet["tweet_URL"]} target="_blank" class="btn btn-outline-primary">
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
@@ -139,7 +139,7 @@ const updateResults = (filteredTweets) => {
 
           <p >${tweet.Tweet}</p>
           <div class="btn-group">
-              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+              <a href=${tweet["tweet_URL"]} target="_blank" class="btn btn-outline-primary ">
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
@@ -170,7 +170,7 @@ const updateResults = (filteredTweets) => {
 
           <p >${tweet.Tweet}</p>
           <div class="btn-group">
-              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+              <a href=${tweet["tweet_URL"]} target="_blank" class="btn btn-outline-primary ">
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
@@ -204,7 +204,7 @@ const updateResults = (filteredTweets) => {
           <p >${tweet.Tweet}</p>
 
           <div class="btn-group">
-              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+              <a href=${tweet["tweet_URL"]} target="_blank" class="btn btn-outline-primary ">
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
@@ -232,7 +232,7 @@ const updateResults = (filteredTweets) => {
 
           <p >${tweet.Tweet}</p>
           <div class="btn-group">
-              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+              <a href=${tweet["tweet_URL"]} target="_blank" class="btn btn-outline-primary ">
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
