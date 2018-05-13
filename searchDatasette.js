@@ -262,7 +262,7 @@ const updateResults = (filteredTweets) => {
 // });
 
 
-$.getJSON("http://fast-falls-98249.herokuapp.com/tweets_database-71af72e/Officials%2C+Handles+and+Tweets+-+SheetOG.json?_next="+200, function(json) {
+$.getJSON("http://fast-falls-98249.herokuapp.com/tweets_database-71af72e/Officials%2C+Handles+and+Tweets+-+SheetOG.json?_next="+1000, function(json) {
 Tweets_array = []
 
   for (var i=0; i<json['rows'].length; i++) {
