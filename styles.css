@@ -16,9 +16,9 @@
 
 #loading {
 		-webkit-animation: rotation 2s infinite linear;
-    -webkit-animation-duration: 1000ms;
+    -webkit-animation-duration: 1500ms;
     height: 200px;
-    width: 250px;  
+    width: 250px;
 }
 
 @-webkit-keyframes rotation {
