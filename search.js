@@ -234,7 +234,6 @@ const updateResults = (filteredTweets) => {
             <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
             <p class="d-inline font-weight-light text-secondary float-right"> - </p>
             <p class="d-inline font-weight-light text-danger float-right"> ${tweet["Job"]}</p>
-
           </li>
         `)
       }
