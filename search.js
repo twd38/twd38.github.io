@@ -236,9 +236,7 @@ const updateResults = (filteredTweets) => {
 
 }
 
-
-
-$.getJSON("hhttps://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100k.json", function(tweets) {
+$.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100k.json", function(tweets) {
     console.log('json grabbed');
     tweets=json;
   })
