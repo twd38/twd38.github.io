@@ -1,4 +1,4 @@
-var tweets = 
+var tweets =
 
 
 

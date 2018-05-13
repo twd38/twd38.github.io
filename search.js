@@ -230,6 +230,7 @@ const updateResults = (filteredTweets) => {
 
 
     })
+    // console.log(filteredTweetsSave)
 
 
 
@@ -237,20 +238,23 @@ const updateResults = (filteredTweets) => {
 
 
 
-// $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets2.json", function(tweets) {
-//     console.log('json grabbed');
-//   })
-//   .done(function(tweets) {
-//     console.log(tweets);
-//   })
-//   .fail(function(tweets) {
-//     console.log("Error!");
-//   });
+$.getJSON("hhttps://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100k.json", function(tweets) {
+    console.log('json grabbed');
+    tweets=json;
+  })
+  .done(function(tweets) {
+    console.log(tweets);
 
-
-
-
-  $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/tweets2.json", function(json) {
-
-  tweets=json
+  })
+  .fail(function(tweets) {
+    console.log("Error!");
   });
+
+
+
+  //
+  // $.getJSON("https://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100k.json", function(json) {
+  //
+  // tweets=json
+  // // console.log(tweets)
+  // });
