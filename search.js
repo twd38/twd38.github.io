@@ -52,6 +52,15 @@ jQuery("#Date").click(function(e){
 e.preventDefault();
 });
 
+jQuery("#Agency").click(function(e){
+  filterMethod = "Agency";
+  console.log("Filter name");
+  const keyword = document.getElementById('topicSearch').value.toLowerCase();
+  applyFilterOnTweets(keyword);
+
+e.preventDefault();
+});
+
 
 
 
@@ -99,6 +108,8 @@ const updateResults = (filteredTweets) => {
               </a>
           </div>
           <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
+          <p class="d-inline font-weight-light text-secondary float-right"> - </p>
+          <p class="d-inline font-weight-light text-danger float-right"> ${tweet["Job"]}</p>
         </li>
 
       `)
@@ -130,8 +141,9 @@ const updateResults = (filteredTweets) => {
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
-
-
+          <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
+          <p class="d-inline font-weight-light text-secondary float-right"> - </p>
+          <p class="d-inline font-weight-light text-danger float-right"> ${tweet["Job"]}</p>
         </li>
       `)
     }
@@ -160,8 +172,9 @@ const updateResults = (filteredTweets) => {
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
-
-
+          <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
+          <p class="d-inline font-weight-light text-secondary float-right"> - </p>
+          <p class="d-inline font-weight-light text-danger float-right"> ${tweet["Job"]}</p>
         </li>
       `)
     }
@@ -193,37 +206,41 @@ const updateResults = (filteredTweets) => {
                   <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
               </a>
           </div>
-
-
+          <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
+          <p class="d-inline font-weight-light text-secondary float-right"> - </p>
+          <p class="d-inline font-weight-light text-danger float-right"> ${tweet["Job"]}</p>
         </li>
       `)
     }
 
-    //AGENCY FILTER
-    // if(filterMethod == "Agency"){
-    //   filteredTweetsSave.sort(function(tweet_a, tweet_b){
-    //   if(tweet_a["Agency"].toLowerCase() < tweet_b["Agency"].toLowerCase()) return -1;
-    //   if(tweet_a["Agency"].toLowerCase() > tweet_b["Agency"].toLowerCase()) return 1;
-    //   return 0;
-    //   })
-    //
-    //   $('#results_ul').append(`
-    //     <li class="list-group-item mx-auto" style="width: 1000px;">
-    //
-    //         <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
-    //         <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
-    //
-    //       <p >${tweet.Tweet}</p>
-    //       <div class="btn-group">
-    //           <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
-    //               <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
-    //           </a>
-    //       </div>
-    //
-    //
-    //     </li>
-    //   `)
-    // }
+    // AGENCY FILTER
+    if(filterMethod == "Agency"){
+      filteredTweetsSave.sort(function(tweet_a, tweet_b){
+      if(tweet_a["Agency"].toLowerCase() < tweet_b["Agency"].toLowerCase()) return -1;
+      if(tweet_a["Agency"].toLowerCase() > tweet_b["Agency"].toLowerCase()) return 1;
+      return 0;
+      })
+
+      $('#results_ul').append(`
+        <li class="list-group-item mx-auto" style="width: 1000px;">
+
+            <p class=" d-inline font-weight-bold"  > ${tweet["Name"]}</p>
+            <p class="d-inline font-weight-light text-primary"> ${tweet["Twitter_Handle"]}</p>
+            <p class="d-inline font-weight-light text-success float-right"> ${tweet["Date"]}</p>
+
+          <p >${tweet.Tweet}</p>
+          <div class="btn-group">
+              <a href=${tweet["tweet_URL"]} class="btn btn-outline-primary ">
+                  <i class="glyphicon glyphicon-floppy-disk" aria-hidden="true">Original Tweet</i>
+              </a>
+          </div>
+          <p class="d-inline font-weight-light text-warning float-right"> ${tweet["Agency"]}</p>
+          <p class="d-inline font-weight-light text-secondary float-right"> - </p>
+          <p class="d-inline font-weight-light text-danger float-right"> ${tweet["Job"]}</p>
+
+        </li>
+      `)
+    }
 
 
 
@@ -239,24 +256,24 @@ $.ajaxSetup({
     timeout: 20000 //Time in milliseconds
 });
 
+//
+// $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100K_v3.json", function(json) {
+//     console.log('json grabbed');
+//     tweets=json;
+//   })
+//   .done(function(json) {
+//     console.log(json;
+//
+//   })
+//   .fail(function(json) {
+//     console.log("Error!");
+//   });
 
-$.getJSON("https://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100K_v3.json", function(tweets) {
-    console.log('json grabbed');
-    // tweets=json;
-  })
-  .done(function(tweets) {
-    console.log(tweets);
 
-  })
-  .fail(function(tweets) {
-    console.log("Error!");
+
+  //
+  $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100K_v3.json", function(json) {
+
+  tweets=json
+   console.log(tweets)
   });
-
-
-
-  //
-  // $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_51K.json", function(json) {
-  //
-  // tweets=json
-  //  console.log(tweets)
-  // });
