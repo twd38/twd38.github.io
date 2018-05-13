@@ -275,5 +275,5 @@ $.ajaxSetup({
   $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100K_v3.json", function(json) {
 
   tweets=json
-   console.log(tweets)
+   // console.log(tweets)
   });
