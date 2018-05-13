@@ -11,3 +11,21 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+
+#loading {
+		-webkit-animation: rotation 2s infinite linear;
+    height: 200px;
+    width: 250px;
+    
+}
+
+@-webkit-keyframes rotation {
+		from {
+				-webkit-transform: rotate(0deg);
+		}
+		to {
+				-webkit-transform: rotate(359deg);
+		}
+}

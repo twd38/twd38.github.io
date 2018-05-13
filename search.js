@@ -71,15 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (keyword.length < 2) {
       return $('#results_ul').html(`<h4 class="text-center text-danger">Please narrow your search</h4>`)
     }
-    $('#results_ul').html(`<div class="loader mx-auto"></div>`)
+    // $('#results_ul').html(`<div class="loader mx-auto"></div>`)
+    $('#results_ul').html(`<img id="loading" class="mx-auto" src="https://clipart.info/images/ccovers/1523212416donald-trump-head-wtf-png.png">`)
     applyFilterOnTweets(keyword);
   });
 });
 
+
 const applyFilterOnTweets = debounce(500, (keyword) => {
-  const filtered_tweets = tweets.filter(tweet => {
-    return tweet.Tweet.toLowerCase().indexOf(keyword)!= -1;
-  })
+    const filtered_tweets = tweets.filter(tweet => {
+      return tweet.Tweet.toLowerCase().indexOf(keyword)!= -1;
+    })
   updateResults(filtered_tweets);
 })
 
@@ -275,5 +277,5 @@ $.ajaxSetup({
   $.getJSON("https://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100K_v3.json", function(json) {
 
   tweets=json
-  console.log(tweets)
+  // console.log(tweets)
   });
