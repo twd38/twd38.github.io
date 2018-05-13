@@ -87,7 +87,7 @@ const updateResults = (filteredTweets) => {
   filteredTweetsSave = filteredTweets
   filteredTweetsSave.forEach(tweet => {
 
-
+//----------------------DEFAULT FILTER----------------------
       if(filterMethod == ""){
         $('#results_ul').append(`
           <li class="list-group-item mx-auto" style="width: 1000px;">
@@ -110,8 +110,9 @@ const updateResults = (filteredTweets) => {
 
         `)
       }
-        // <a href="${tweet["tweet_URL"]}"> Original Tweet </a>
 
+
+//----------------------NO FILTER----------------------
       if(filterMethod == "none"){
 
         function shuffleArray(array) {
@@ -144,7 +145,7 @@ const updateResults = (filteredTweets) => {
         `)
       }
 
-
+//----------------------NAME FILTER----------------------
       if(filterMethod == "Name"){
         // filteredTweetsSave.sort((tweet_a, tweet_b) => tweet_a["Name"] < tweet_b["Name"])
 
@@ -175,7 +176,7 @@ const updateResults = (filteredTweets) => {
         `)
       }
 
-      //DATE FILTER
+//----------------------DATE FILTER----------------------
       if(filterMethod == "Date"){
         // filteredTweetsSave.sort((tweet_a, tweet_b) => tweet_a["Name"] < tweet_b["Name"])
 
@@ -209,7 +210,7 @@ const updateResults = (filteredTweets) => {
         `)
       }
 
-      // AGENCY FILTER
+//----------------------AGENCY FILTER---------------------
       if(filterMethod == "Agency"){
         filteredTweetsSave.sort(function(tweet_a, tweet_b){
         if(tweet_a["Agency"].toLowerCase() < tweet_b["Agency"].toLowerCase()) return -1;
