@@ -60,8 +60,8 @@ e.preventDefault();
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // document.getElementById('topicSearch').addEventListener('input', function(evt) {
-  document.getElementById('topicSearch').addEventListener('keypress', function(evt) {
+  document.getElementById('topicSearch').addEventListener('input', function(evt) {
+  // document.getElementById('topicSearch').addEventListener('keypress', function(evt) {
     // split value to keywords, search for every keyword
     const keyword = this.value.toLowerCase();
     if (keyword.length < 2) {
@@ -258,7 +258,7 @@ $.ajaxSetup({
 //     console.log("Error!");
 //   });
 
-  $.getJSON("https://s3.us-east-2.amazonaws.com/tmdbucket3/trump_appointees_100K_v3.json", function(json) {
+  $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100K_v3.json", function(json) {
 
   tweets=json
   // console.log(tweets)
