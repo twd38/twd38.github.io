@@ -60,8 +60,8 @@ e.preventDefault();
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('topicSearch').addEventListener('input', function(evt) {
-  // document.getElementById('topicSearch').addEventListener('keypress', function(evt) {
+  // document.getElementById('topicSearch').addEventListener('input', function(evt) {
+  document.getElementById('topicSearch').addEventListener('keypress', function(evt) {
     // split value to keywords, search for every keyword
     const keyword = this.value.toLowerCase();
     if (keyword.length < 2) {
