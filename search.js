@@ -23,6 +23,7 @@ const debounce = (duration, fn) => {
   }
 }
 
+//Export to CSV Button
 jQuery("#export").click(function(e){
   filterMethod = "none";
   console.log("Export");
@@ -34,41 +35,42 @@ jQuery("#export").click(function(e){
 e.preventDefault();
 });
 
-jQuery("#none").click(function(e){
-  filterMethod = "none";
-  console.log("Filter name");
-  const keyword = document.getElementById('topicSearch').value.toLowerCase();
-  applyFilterOnTweets(keyword);
+//Sorting Filters
+            jQuery("#none").click(function(e){
+              filterMethod = "none";
+              console.log("Filter name");
+              const keyword = document.getElementById('topicSearch').value.toLowerCase();
+              applyFilterOnTweets(keyword);
 
-e.preventDefault();
-});
+            e.preventDefault();
+            });
 
-jQuery("#Name").click(function(e){
-  filterMethod = "Name";
-  console.log("Filter name");
-  const keyword = document.getElementById('topicSearch').value.toLowerCase();
-  applyFilterOnTweets(keyword);
+            jQuery("#Name").click(function(e){
+              filterMethod = "Name";
+              console.log("Filter name");
+              const keyword = document.getElementById('topicSearch').value.toLowerCase();
+              applyFilterOnTweets(keyword);
 
-e.preventDefault();
-});
+            e.preventDefault();
+            });
 
-jQuery("#Date").click(function(e){
-  filterMethod = "Date";
-  console.log("Filter name");
-  const keyword = document.getElementById('topicSearch').value.toLowerCase();
-  applyFilterOnTweets(keyword);
+            jQuery("#Date").click(function(e){
+              filterMethod = "Date";
+              console.log("Filter name");
+              const keyword = document.getElementById('topicSearch').value.toLowerCase();
+              applyFilterOnTweets(keyword);
 
-e.preventDefault();
-});
+            e.preventDefault();
+            });
 
-jQuery("#Agency").click(function(e){
-  filterMethod = "Agency";
-  console.log("Filter name");
-  const keyword = document.getElementById('topicSearch').value.toLowerCase();
-  applyFilterOnTweets(keyword);
+            jQuery("#Agency").click(function(e){
+              filterMethod = "Agency";
+              console.log("Filter name");
+              const keyword = document.getElementById('topicSearch').value.toLowerCase();
+              applyFilterOnTweets(keyword);
 
-e.preventDefault();
-});
+            e.preventDefault();
+            });
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -299,43 +301,46 @@ function exportToCsv(filename, rows) {
         }
     }
 
-    function exportToCsvFile(jsonData) {
-        let csvStr = parseJSONToCSVStr(jsonData);
-        let dataUri = 'data:text/csv;charset=utf-8,'+ csvStr;
+  //Export to CSV function
+  function exportToCsvFile(jsonData) {
+      const keyword = document.getElementById('topicSearch').value.toLowerCase();
+      let csvStr = parseJSONToCSVStr(jsonData);
+      let dataUri = 'data:text/csv;charset=utf-8,'+ csvStr;
 
-        let exportFileDefaultName = 'data.csv';
+      let exportFileDefaultName = 'trumptweeter_' + keyword + ".csv";
 
-        let linkElement = document.createElement('a');
-        linkElement.setAttribute('href', dataUri);
-        linkElement.setAttribute('download', exportFileDefaultName);
-        linkElement.click();
-    }
-
-    function parseJSONToCSVStr(jsonData) {
-    if(jsonData.length == 0) {
-        return '';
-    }
-
-    let keys = Object.keys(jsonData[0]);
-
-    let columnDelimiter = ',';
-    let lineDelimiter = '\n';
-
-    let csvColumnHeader = keys.join(columnDelimiter);
-    let csvStr = csvColumnHeader + lineDelimiter;
-
-    jsonData.forEach(item => {
-        keys.forEach((key, index) => {
-            if( (index > 0) && (index < keys.length-1) ) {
-                csvStr += columnDelimiter;
-            }
-            csvStr += item[key];
-        });
-        csvStr += lineDelimiter;
-    });
-
-    return encodeURIComponent(csvStr);;
+      let linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
   }
+
+  //Parses JSON to CSV. Called by exportToCsvFile()
+  function parseJSONToCSVStr(jsonData) {
+  if(jsonData.length == 0) {
+      return '';
+  }
+
+  let keys = Object.keys(jsonData[0]);
+
+  let columnDelimiter = ',';
+  let lineDelimiter = '\n';
+
+  let csvColumnHeader = keys.join(columnDelimiter);
+  let csvStr = csvColumnHeader + lineDelimiter;
+
+  jsonData.forEach(item => {
+      keys.forEach((key, index) => {
+          if( (index > 0) && (index < keys.length-1) ) {
+              csvStr += columnDelimiter;
+          }
+          csvStr += item[key];
+      });
+      csvStr += lineDelimiter;
+  });
+
+  return encodeURIComponent(csvStr);;
+}
 
 
 

@@ -33,3 +33,7 @@
 #dropdownMenuButton {
   border-radius: 0 .25rem .25rem 0;
 }
+
+#export {
+  margin-left: 5px;
+}
