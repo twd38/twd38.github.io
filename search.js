@@ -3,6 +3,7 @@ var Twitter_Handle
 var none
 var Tweet
 var tweets
+var filtered_tweets = []
 
 var filteredTweetsSave = []
 var filteredTweetsName = []
@@ -21,6 +22,17 @@ const debounce = (duration, fn) => {
     }, duration)
   }
 }
+
+jQuery("#export").click(function(e){
+  filterMethod = "none";
+  console.log("Export");
+  const keyword = document.getElementById('topicSearch').value.toLowerCase();
+  // exportToCsv("trumptweeter.csv", filtered_tweets);
+  // var parsedTweets = parseJSONToCSVStr(filtered_tweets);
+  exportToCsvFile(filtered_tweets);
+
+e.preventDefault();
+});
 
 jQuery("#none").click(function(e){
   filterMethod = "none";
@@ -74,10 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const applyFilterOnTweets = debounce(500, (keyword) => {
-    const filtered_tweets = tweets.filter(tweet => {
+     filtered_tweets = tweets.filter(tweet => {
       return tweet.Tweet.toLowerCase().indexOf(keyword)!= -1;
     })
   updateResults(filtered_tweets);
+  console.log(filtered_tweets);
 })
 
 const updateResults = (filteredTweets) => {
@@ -244,6 +257,87 @@ const updateResults = (filteredTweets) => {
 $.ajaxSetup({
     timeout: 20000 //Time in milliseconds
 });
+
+function exportToCsv(filename, rows) {
+        var processRow = function (row) {
+            var finalVal = '';
+            for (var j = 0; j < row.length; j++) {
+                var innerValue = row[j] === null ? '' : row[j].toString();
+                if (row[j] instanceof Date) {
+                    innerValue = row[j].toLocaleString();
+                };
+                var result = innerValue.replace(/"/g, '""');
+                if (result.search(/("|,|\n)/g) >= 0)
+                    result = '"' + result + '"';
+                if (j > 0)
+                    finalVal += ',';
+                finalVal += result;
+            }
+            return finalVal + '\n';
+        };
+
+        var csvFile = '';
+        for (var i = 0; i < rows.length; i++) {
+            csvFile += processRow(rows[i]);
+        }
+
+        var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+        if (navigator.msSaveBlob) { // IE 10+
+            navigator.msSaveBlob(blob, filename);
+        } else {
+            var link = document.createElement("a");
+            if (link.download !== undefined) { // feature detection
+                // Browsers that support HTML5 download attribute
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", filename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+    }
+
+    function exportToCsvFile(jsonData) {
+        let csvStr = parseJSONToCSVStr(jsonData);
+        let dataUri = 'data:text/csv;charset=utf-8,'+ csvStr;
+
+        let exportFileDefaultName = 'data.csv';
+
+        let linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+    }
+
+    function parseJSONToCSVStr(jsonData) {
+    if(jsonData.length == 0) {
+        return '';
+    }
+
+    let keys = Object.keys(jsonData[0]);
+
+    let columnDelimiter = ',';
+    let lineDelimiter = '\n';
+
+    let csvColumnHeader = keys.join(columnDelimiter);
+    let csvStr = csvColumnHeader + lineDelimiter;
+
+    jsonData.forEach(item => {
+        keys.forEach((key, index) => {
+            if( (index > 0) && (index < keys.length-1) ) {
+                csvStr += columnDelimiter;
+            }
+            csvStr += item[key];
+        });
+        csvStr += lineDelimiter;
+    });
+
+    return encodeURIComponent(csvStr);;
+  }
+
+
 
 //
 // $.getJSON("https://raw.githubusercontent.com/twd38/twd38.github.io/master/trump_appointees_100K_v3.json", function(json) {
